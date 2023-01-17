@@ -1,6 +1,8 @@
 import customtkinter
 import tkinter
 
+import sql
+
 class App(customtkinter.CTk):
     def register_window(self):
         new_window = customtkinter.CTkToplevel(self)
@@ -12,7 +14,46 @@ class App(customtkinter.CTk):
 
         pad_canvas = customtkinter.CTkCanvas(master=main_frame, height=40, bg='#2b2b2b')
         pad_canvas.configure(highlightthickness=0)
-        pad_canvas.pack(pady=10)
+        pad_canvas.pack(pady=3)
+
+        user_label = customtkinter.CTkLabel(master=main_frame, justify=tkinter.LEFT, text="Username")
+        user_label.pack()
+
+        user_entry = customtkinter.CTkEntry(master=main_frame, placeholder_text="Type here...")
+        user_entry.pack()
+
+        pad_canvas1 = customtkinter.CTkCanvas(master=main_frame, height=40, bg='#2b2b2b')
+        pad_canvas1.configure(highlightthickness=0)
+        pad_canvas1.pack(pady=3)
+
+        pass_label = customtkinter.CTkLabel(master=main_frame, justify=tkinter.LEFT, text="Password")
+        pass_label.pack()
+
+        pass_entry = customtkinter.CTkEntry(master=main_frame, placeholder_text="Type here...")
+        pass_entry.pack()
+
+        pad_canvas1 = customtkinter.CTkCanvas(master=main_frame, height=40, bg='#2b2b2b')
+        pad_canvas1.configure(highlightthickness=0)
+        pad_canvas1.pack(pady=3)
+
+        email_label = customtkinter.CTkLabel(master=main_frame, justify=tkinter.LEFT, text="Email Address")
+        email_label.pack()
+
+        email_entry = customtkinter.CTkEntry(master=main_frame, placeholder_text="Type here...")
+        email_entry.pack()
+
+        pad_canvas1 = customtkinter.CTkCanvas(master=main_frame, height=40, bg='#2b2b2b')
+        pad_canvas1.configure(highlightthickness=0)
+        pad_canvas1.pack(pady=3)
+
+        license_label = customtkinter.CTkLabel(master=main_frame, justify=tkinter.LEFT, text="License Key")
+        license_label.pack()
+
+        license_entry = customtkinter.CTkEntry(master=main_frame, placeholder_text="Type here...")
+        license_entry.pack()
+
+        register_button = customtkinter.CTkButton(master=main_frame, text="Register")
+        register_button.pack(pady=30)
 
     def __init__(self):
         super().__init__()
@@ -36,9 +77,6 @@ class App(customtkinter.CTk):
         user_entry = customtkinter.CTkEntry(master=main_frame, placeholder_text="Type here...")
         user_entry.pack()
 
-        def print_entry():
-            print(user_entry.get())
-
         pad_canvas1 = customtkinter.CTkCanvas(master=main_frame, height=40, bg='#2b2b2b')
         pad_canvas1.configure(highlightthickness=0)
         pad_canvas1.pack(pady=10)
@@ -49,7 +87,7 @@ class App(customtkinter.CTk):
         pass_entry = customtkinter.CTkEntry(master=main_frame, placeholder_text="Type here...")
         pass_entry.pack()
 
-        button = customtkinter.CTkButton(master=main_frame, text="Login", command=print_entry)
+        button = customtkinter.CTkButton(master=main_frame, text="Login")
         button.place(relx = 0.5, rely = 0.8, anchor=tkinter.CENTER)
 
         register_button = customtkinter.CTkButton(master=main_frame, text="Don't have an account?", command=self.register_window)
