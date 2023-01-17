@@ -47,4 +47,4 @@ def generate_license(id, days): # use randomstr to create a license id, then ins
 
 generate_license(randomstr(10),"100")
 
-
+#test
