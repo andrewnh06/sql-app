@@ -33,3 +33,9 @@ def login (username, password):
     if entry[0] == username and entry[2]== password:
       ...
 
+def randomstr(length): # return a random str of length length
+    ...
+
+def generate_license(length, days): # use randomstr to create a license id, then insert it into the database and return the id to the user
+
+    ...
