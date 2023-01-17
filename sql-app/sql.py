@@ -1,4 +1,6 @@
 import mysql.connector
+import string
+import random
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -33,9 +35,16 @@ def login (username, password):
     if entry[0] == username and entry[2]== password:
       ...
 
-def randomstr(length): # return a random str of length length
-    ...
+def randomstr(stringLength=10): # return a random str of length length
+  license=string.ascii_uppercase
+  return ''.join(random.choice(license) for i
+    in range(stringLength))
+# print(randomstr(10))
+def generate_license(id, days): # use randomstr to create a license id, then insert it into the database and return the id to the user
+  sql = f"INSERT INTO licenses (id, used, days) VALUES ('{id}', '0', '{days}')"
+  mycursor.execute(sql)
+  mydb.commit()
 
-def generate_license(length, days): # use randomstr to create a license id, then insert it into the database and return the id to the user
+generate_license(randomstr(10),"100")
 
-    ...
+
