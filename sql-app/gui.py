@@ -1,9 +1,37 @@
 import customtkinter
 import tkinter
 
+import user
+
 import sql
 
-class App(customtkinter.CTk):
+class MainApp(customtkinter.CTk):
+    def __init__(self):
+        super().__init__()
+
+        customtkinter.set_appearance_mode("dark")  # Modes: "System" (standard), "Dark", "Light"
+        customtkinter.set_default_color_theme("blue")
+
+        self.geometry("500x600")
+        self.title("App")
+
+        tab_view = customtkinter.CTkTabview(master=self, width=250)
+        tab_view.pack(padx=60, pady=20, fill="both", expand=True)
+
+        tab_view.add("Clicker")
+        tab_view.add("Leaderboard")
+
+        if user.admin:
+            tab_view.add("Admin Panel")
+
+        button = customtkinter.CTkButton(tab_view.tab("Clicker"), text="Click Me!", width = 300, height = 500)
+        button.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
+
+
+
+
+class LoginScreen(customtkinter.CTk):
+
     def register_window(self):
         new_window = customtkinter.CTkToplevel(self)
         new_window.title("Register")
@@ -62,7 +90,7 @@ class App(customtkinter.CTk):
         customtkinter.set_default_color_theme("blue")
 
         self.geometry("400x500")
-        self.title("App")
+        self.title("Welcome")
 
         main_frame = customtkinter.CTkFrame(master=self)
         main_frame.pack(padx=60,pady=20, fill="both", expand=True)
@@ -87,7 +115,15 @@ class App(customtkinter.CTk):
         pass_entry = customtkinter.CTkEntry(master=main_frame, placeholder_text="Type here...")
         pass_entry.pack()
 
-        button = customtkinter.CTkButton(master=main_frame, text="Login")
+        def login_routine():
+            # status = sql.login(user_entry.get(), pass_entry.get())
+
+            self.destroy()
+
+            app = MainApp()
+            app.mainloop()
+
+        button = customtkinter.CTkButton(master=main_frame, text="Login", command=login_routine)
         button.place(relx = 0.5, rely = 0.8, anchor=tkinter.CENTER)
 
         register_button = customtkinter.CTkButton(master=main_frame, text="Don't have an account?", command=self.register_window)
