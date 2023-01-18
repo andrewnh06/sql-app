@@ -27,7 +27,7 @@ def register(username, password, email, license):
 
   for entry in entries:
     if license == entry[0] and entry[1] == 0:
-      sql = f"INSERT INTO test (user_name, password, email, expiry_date, creation_date) VALUES ('{username}', '{password}', '{email}','CURDATE()', 'CURDATE()')"
+      sql = f"INSERT INTO test (user_name, password, email, expiry_date, creation_date) VALUES ('{username}', '{password}', '{email}')"
       mycursor.execute(sql)
       mydb.commit()
 
@@ -53,9 +53,9 @@ def randomstr(stringLength=10): # return a random str of length length
   return ''.join(random.choice(license) for i
     in range(stringLength))
 #
-def generate_license(len, days): # use randomstr to create a license id, then insert it into the database and return the id to the user
+def generate_license(len): # use randomstr to create a license id, then insert it into the database and return the id to the user
   id = randomstr(len)
-  sql = f"INSERT INTO licenses (id, used, days) VALUES ('{id}', '0', '{days}')"
+  sql = f"INSERT INTO licenses (id, used) VALUES ('{id}', '0')"
   mycursor.execute(sql)
   mydb.commit()
 
