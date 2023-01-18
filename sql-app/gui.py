@@ -5,7 +5,12 @@ import user
 
 import sql
 
+import pyperclip
+
 class MainApp(customtkinter.CTk):
+    last_generated = ""
+    global license_label
+
     def __init__(self):
         super().__init__()
 
@@ -26,6 +31,44 @@ class MainApp(customtkinter.CTk):
 
         button = customtkinter.CTkButton(tab_view.tab("Clicker"), text="Click Me!", width = 300, height = 500)
         button.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
+
+        if user.admin:
+            length_label = customtkinter.CTkLabel(tab_view.tab("Admin Panel"), text="ID Length")
+            length_label.grid(row=0, column=0)
+
+            length_entry = customtkinter.CTkEntry(tab_view.tab("Admin Panel"), placeholder_text="Type here...")
+            length_entry.grid(row=0, column=1)
+
+            days_label = customtkinter.CTkLabel(tab_view.tab("Admin Panel"), text="Days")
+            days_label.grid(row=1, column=0)
+
+            days_entry = customtkinter.CTkEntry(tab_view.tab("Admin Panel"), placeholder_text="Type here...")
+            days_entry.grid(row=1, column=1)
+
+            def generate():
+                if not length_entry.get() or not days_entry.get():
+                    return
+
+                lent = int(length_entry.get())
+                days = int(days_entry.get())
+
+                self.last_generated = sql.generate_license(lent, days)
+
+                license_label.configure(text=self.last_generated)
+
+            button = customtkinter.CTkButton(tab_view.tab("Admin Panel"), text="Generate License", command=generate)
+            button.grid(row=2, column=0)
+
+            license_label = customtkinter.CTkLabel(tab_view.tab("Admin Panel"), text="")
+            license_label.grid(row=2, column=1)
+
+            def copy():
+                pyperclip.copy(self.last_generated)
+
+            copy_button = customtkinter.CTkButton(tab_view.tab("Admin Panel"), text="Copy to Clipboard", command=copy)
+            copy_button.grid(row=3,column=0)
+
+
 
 
 

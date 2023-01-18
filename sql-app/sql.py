@@ -1,4 +1,4 @@
-import mysql.connector
+'''import mysql.connector
 import string
 import random
 
@@ -26,8 +26,6 @@ def register(username, password, email):
   mycursor.execute(sql)
   mydb.commit()
 
-register("AndrewHughes", "Joseph197i3802", "a.hughes16@share.epsb.ca")
-
 def login (username, password):
   mycursor.execute("SELECT * FROM test")
   entries = mycursor.fetchall()
@@ -40,11 +38,8 @@ def randomstr(stringLength=10): # return a random str of length length
   return ''.join(random.choice(license) for i
     in range(stringLength))
 # print(randomstr(10))
-def generate_license(id, days): # use randomstr to create a license id, then insert it into the database and return the id to the user
+def generate_license(len, days): # use randomstr to create a license id, then insert it into the database and return the id to the user
+  id = randomstr(len)
   sql = f"INSERT INTO licenses (id, used, days) VALUES ('{id}', '0', '{days}')"
   mycursor.execute(sql)
-  mydb.commit()
-
-generate_license(randomstr(10),"100")
-
-
+  mydb.commit()'''
