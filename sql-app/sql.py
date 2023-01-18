@@ -1,4 +1,4 @@
-'''import mysql.connector
+import mysql.connector
 import string
 import random
 
@@ -42,4 +42,4 @@ def generate_license(len, days): # use randomstr to create a license id, then in
   id = randomstr(len)
   sql = f"INSERT INTO licenses (id, used, days) VALUES ('{id}', '0', '{days}')"
   mycursor.execute(sql)
-  mydb.commit()'''
+  mydb.commit()
