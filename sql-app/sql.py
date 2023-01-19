@@ -41,12 +41,14 @@ def register(username, password, email, license):
 
 
 
-def login (username, password):
+def login(username, password):
   mycursor.execute("SELECT * FROM test")
   entries = mycursor.fetchall()
   for entry in entries:
     if entry[0] == username and entry[2]== password:
-      ...
+      return "Logged in"
+
+  return "Username/password incorrect"
 
 def randomstr(stringLength=10): # return a random str of length length
   license=string.ascii_uppercase
