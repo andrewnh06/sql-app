@@ -32,7 +32,7 @@ class MainApp(customtkinter.CTk):
         button = customtkinter.CTkButton(tab_view.tab("Clicker"), text="Click Me!", width = 300, height = 500, command=sql.click)
         button.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
-        top = sql.get_top(5)
+        top = sql.get_top(2)
 
         for i in range(len(top)):
             name = customtkinter.CTkLabel(text=top[i][0])
