@@ -125,8 +125,15 @@ class LoginScreen(customtkinter.CTk):
         license_entry = customtkinter.CTkEntry(master=main_frame, placeholder_text="Type here...")
         license_entry.pack()
 
-        register_button = customtkinter.CTkButton(master=main_frame, text="Register")
+        def register():
+            status = sql.register(user_label.get(), pass_label.get(), email_label.get(), license_label.get())
+            self.register_label.configure(text=status)
+
+        register_button = customtkinter.CTkButton(master=main_frame, text="Register", command=register)
         register_button.pack(pady=30)
+
+        self.register_label = customtkinter.CTkLabel(master=main_frame, text="")
+        self.register_label.place(relx=0.5, rely=0.9, anchor=tkinter.CENTER)
 
     def __init__(self):
         super().__init__()
