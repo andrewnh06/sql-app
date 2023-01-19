@@ -133,7 +133,7 @@ class LoginScreen(customtkinter.CTk):
         register_button.pack(pady=30)
 
         self.register_label = customtkinter.CTkLabel(master=main_frame, text="")
-        self.register_label.place(relx=0.5, rely=0.9, anchor=tkinter.CENTER)
+        self.register_label.pack()
 
     def __init__(self):
         super().__init__()
