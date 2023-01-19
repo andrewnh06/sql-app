@@ -126,7 +126,7 @@ class LoginScreen(customtkinter.CTk):
         license_entry.pack()
 
         def register():
-            status = sql.register(user_label.get(), pass_label.get(), email_label.get(), license_label.get())
+            status = sql.register(user_entry.get(), pass_entry.get(), email_entry.get(), license_entry.get())
             self.register_label.configure(text=status)
 
         register_button = customtkinter.CTkButton(master=main_frame, text="Register", command=register)
