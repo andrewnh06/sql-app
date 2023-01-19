@@ -71,3 +71,24 @@ def delete_all_users():
   sql = f"DELETE FROM test WHERE admin = 0"
   mycursor.execute(sql)
   mydb.commit()
+
+def get_top(amount):
+  sql = f"SELECT * FROM test"
+  mycursor.execute(sql)
+  entries = mycursor.fetchall()
+
+  top = []
+
+  for i in range(amount):
+    high = 0
+    name = ""
+    idx = 0
+    for i in range(len(entries)):
+      if entries[i][3] > high:
+        high = entries[i][3]
+        name = entries[i][0]
+        idx = i
+
+    entries.pop(idx)
+
+    top.append((name, high))
