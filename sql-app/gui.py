@@ -29,7 +29,7 @@ class MainApp(customtkinter.CTk):
         if user.admin:
             tab_view.add("Admin Panel")
 
-        button = customtkinter.CTkButton(tab_view.tab("Clicker"), text="Click Me!", width = 300, height = 500)
+        button = customtkinter.CTkButton(tab_view.tab("Clicker"), text="Click Me!", width = 300, height = 500, command=sql.click)
         button.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
         if user.admin:

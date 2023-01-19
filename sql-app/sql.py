@@ -50,6 +50,7 @@ def login(username, password):
     if entry[0] == username and entry[2]== password:
 
       user.admin = entry[4]
+      user.username = entry[0]
       return "Logged in"
 
   return "Username/password incorrect"
@@ -84,7 +85,7 @@ def get_top(amount):
     name = ""
     idx = 0
     for i in range(len(entries)):
-      if entries[i][3] > high:
+      if entries[i][3] >= high:
         high = entries[i][3]
         name = entries[i][0]
         idx = i
@@ -92,3 +93,10 @@ def get_top(amount):
     entries.pop(idx)
 
     top.append((name, high))
+
+  return top
+
+def click():
+  sql = f"UPDATE test SET clicks = clicks + 1 WHERE user_name='{user.username}'"
+  mycursor.execute(sql)
+  mydb.commit()
