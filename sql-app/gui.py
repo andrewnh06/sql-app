@@ -75,6 +75,8 @@ class MainApp(customtkinter.CTk):
 
 class LoginScreen(customtkinter.CTk):
 
+    # global login_label
+
     def register_window(self):
         new_window = customtkinter.CTkToplevel(self)
         new_window.title("Register")
@@ -159,15 +161,22 @@ class LoginScreen(customtkinter.CTk):
         pass_entry.pack()
 
         def login_routine():
-            # status = sql.login(user_entry.get(), pass_entry.get())
+            status = sql.login(user_entry.get(), pass_entry.get())
+            self.login_label.configure(text=status)
 
-            self.destroy()
+            if status == "Logged in":
 
-            app = MainApp()
-            app.mainloop()
+                self.destroy()
+
+                app = MainApp()
+                app.mainloop()
 
         button = customtkinter.CTkButton(master=main_frame, text="Login", command=login_routine)
-        button.place(relx = 0.5, rely = 0.8, anchor=tkinter.CENTER)
+        button.place(relx = 0.5, rely = 0.7, anchor=tkinter.CENTER)
 
         register_button = customtkinter.CTkButton(master=main_frame, text="Don't have an account?", command=self.register_window)
-        register_button.place(relx=0.5, rely=0.9, anchor=tkinter.CENTER)
+        register_button.place(relx=0.5, rely=0.8, anchor=tkinter.CENTER)
+
+        self.login_label = customtkinter.CTkLabel(master=main_frame, text="")
+        self.login_label.place(relx=0.5, rely=0.9)
+
