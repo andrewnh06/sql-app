@@ -39,20 +39,13 @@ class MainApp(customtkinter.CTk):
             length_entry = customtkinter.CTkEntry(tab_view.tab("Admin Panel"), placeholder_text="Type here...")
             length_entry.grid(row=0, column=1)
 
-            days_label = customtkinter.CTkLabel(tab_view.tab("Admin Panel"), text="Days")
-            days_label.grid(row=1, column=0)
-
-            days_entry = customtkinter.CTkEntry(tab_view.tab("Admin Panel"), placeholder_text="Type here...")
-            days_entry.grid(row=1, column=1)
-
             def generate():
-                if not length_entry.get() or not days_entry.get():
+                if not length_entry.get():
                     return
 
                 lent = int(length_entry.get())
-                days = int(days_entry.get())
 
-                self.last_generated = sql.generate_license(lent, days)
+                self.last_generated = sql.generate_license(lent)
 
                 license_label.configure(text=self.last_generated)
 
@@ -80,7 +73,7 @@ class LoginScreen(customtkinter.CTk):
     def register_window(self):
         new_window = customtkinter.CTkToplevel(self)
         new_window.title("Register")
-        new_window.geometry("400x500")
+        new_window.geometry("400x550")
 
         main_frame = customtkinter.CTkFrame(master=new_window)
         main_frame.pack(padx=60, pady=20, fill="both", expand=True)

@@ -2,6 +2,8 @@ import mysql.connector
 import string
 import random
 
+import user
+
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
@@ -27,7 +29,7 @@ def register(username, password, email, license):
 
   for entry in entries:
     if license == entry[0] and entry[1] == 0:
-      sql = f"INSERT INTO test (user_name, password, email, expiry_date, creation_date) VALUES ('{username}', '{password}', '{email}')"
+      sql = f"INSERT INTO test (user_name, password, email) VALUES ('{username}', '{password}', '{email}')"
       mycursor.execute(sql)
       mydb.commit()
 
@@ -46,6 +48,8 @@ def login(username, password):
   entries = mycursor.fetchall()
   for entry in entries:
     if entry[0] == username and entry[2]== password:
+
+      user.admin = entry[4]
       return "Logged in"
 
   return "Username/password incorrect"
@@ -62,3 +66,8 @@ def generate_license(len): # use randomstr to create a license id, then insert i
   mydb.commit()
 
   return id
+
+def delete_all_users():
+  sql = f"DELETE FROM test WHERE admin = 0"
+  mycursor.execute(sql)
+  mydb.commit()
