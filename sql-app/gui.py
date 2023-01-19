@@ -163,6 +163,7 @@ class LoginScreen(customtkinter.CTk):
         def login_routine():
             status = sql.login(user_entry.get(), pass_entry.get())
             self.login_label.configure(text=status)
+            self.login_label.place(relx=0.5, rely=0.9)
 
             if status == "Logged in":
 
